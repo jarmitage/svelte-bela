@@ -68,7 +68,7 @@ export default class BelaData extends BelaWebSocket {
 		}
 	}
 
-	sendBuffer (id, type, data) {
+	send (id, type, data) {
 	    if(id === null || typeof(id) != 'number') return false
 
 	    if (typeof(data) == 'string') data = data + '\0'

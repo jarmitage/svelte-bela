@@ -1,13 +1,19 @@
 <script>
+	import { onMount } from 'svelte'
 	// import components
-	// import store
-	export let name;
+	import { BelaStore } from '../stores/belaStore.js'
+
+	onMount(async () => {
+		BelaStore.setup('192.168.8.2', onControl)
+		BelaStore.sendControl({command: 'hello'})
+	})
+
+	function onControl(event) {
+		console.log('[Bela.svelte] received event:', event.detail)
+	}
+
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
+<p>IP: {$BelaStore.ip}</p>
+<p>Connected: {$BelaStore.connected}</p>
 
-<h1>Hello {name}!</h1>

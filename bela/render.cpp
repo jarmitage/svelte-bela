@@ -3,8 +3,18 @@
 
 Gui gui;
 
+void sendToGui(){
+	JSONObject root;
+	root[L"test"] = new JSONValue (0);
+	JSONValue* value = new JSONValue (root);
+	gui->sendControl(value);
+	rt_printf("send value: %d\n", 0);
+}
+
 void onControl (JSONObject root) {
 	std::wstring cmd;
+	rt_printf("Command received\n");
+	sendToGui();
 }
 
 bool setup (BelaContext *context, void *userData) {
